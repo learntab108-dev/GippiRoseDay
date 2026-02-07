@@ -19,12 +19,7 @@ body{
   overflow:hidden;
 }
 
-h1{
-  font-size:16px;
-  text-align:center;
-  color:white;
-  margin-top:20px;
-}
+
 
 p{
   text-align: justify;
@@ -33,6 +28,17 @@ p{
   color: aqua;
 
 }
+.container{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:35px;
+  position:relative;
+  z-index:2;
+}
+
 .rose{
   position:relative;
   width:120px;
@@ -357,15 +363,20 @@ p{
   width: 100%;
 }
 #prompt{
-    all: none;
-    text-transform: none;
-    font-family: 'Great Vibes', cursive;
-    color: white;
-    font-size: 2rem;
-    width: max-content;
-    font-weight: lighter;
-    margin-left: -5rem;
+  position:absolute;
+  bottom:-55px;          /* sits just below rose */
+  left:50%;
+  transform:translateX(-50%);
+
+  font-family:'Great Vibes',cursive;
+  font-size:1.8rem;
+  color:white;
+
+  white-space:nowrap;
+
+  animation: pulse 1.8s infinite;
 }
+
 /* =========================
    CINEMATIC ADD-ONS ONLY
    ========================= */
@@ -410,14 +421,28 @@ body{
   box-shadow:0 0 30px rgba(255,255,255,.2);
   z-index:2;
 }
+h1{
+  position:relative;
+  z-index:5;
+  font-size:16px;
+  text-align:center;
+  color:white;
+  margin-top:20px;
+}
 
 /* slideshow */
 #slideshow{
-  position:relative;
-  width:260px;
-  height:180px;
-  margin-top:10px;
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100vw;
+  height:100vh;
+
+  overflow:hidden;
+  z-index:0;              /* behind everything */
 }
+
 
 #slideshow img{
   position:absolute;
@@ -425,9 +450,24 @@ body{
   height:100%;
   object-fit:cover;
   opacity:0;
-  transition:1.5s;
+  transition:2s;
+  filter: brightness(0.55) blur(2px);
 }
 
 #slideshow img.active{
   opacity:1;
+}
+/* ======================
+   PROMPT PULSE ANIMATION
+====================== */
+
+@keyframes pulse{
+  0%,100%{
+    opacity:0.6;
+    transform:translateX(-50%) scale(1);
+  }
+  50%{
+    opacity:1;
+    transform:translateX(-50%) scale(1.05);
+  }
 }
