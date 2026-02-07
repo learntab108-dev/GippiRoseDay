@@ -33,22 +33,6 @@ document.body.addEventListener("click", ()=>{
     else clearInterval(fade);
   },200);
 },{once:true});
-
-
-/* ======================
-   SLIDESHOW
-====================== */
-
-const slides = document.querySelectorAll("#slideshow img");
-let index = 0;
-
-setInterval(()=>{
-  slides[index].classList.remove("active");
-  index = (index+1)%slides.length;
-  slides[index].classList.add("active");
-},3000);
-
-
 /* ======================
    PARTICLES (hearts/sparkles)
 ====================== */
